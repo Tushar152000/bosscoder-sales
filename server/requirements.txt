@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pydub
+faster-whisper
+ctranslate2

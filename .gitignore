@@ -1,0 +1,19 @@
+# Node / Next.js
+web/node_modules/
+web/.next/
+web/.env*
+*.log
+
+# Python
+**/__pycache__/
+**/.pytest_cache/
+**/.mypy_cache/
+**/.venv*/
+server/.venv/
+*.pyc
+
+# Old misplaced server under web
+web/src/app/server/
+
+# OS
+.DS_Store

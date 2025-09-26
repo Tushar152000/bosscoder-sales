@@ -1,0 +1,29 @@
+services:
+  server:
+    build:
+      context: ./server
+    environment:
+      - PORT=8080
+      - WHISPER_MODEL=small
+      - WHISPER_DEVICE=cpu
+      - WHISPER_COMPUTE=int8
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  web:
+    build:
+      context: ./web
+    environment:
+      - WHISPER_URL=http://server:8080/transcribe
+      - NODE_ENV=production
+      - PORT=3000
+    depends_on:
+      server:
+        condition: service_healthy
+    ports:
+      - "3000:3000"

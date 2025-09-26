@@ -1,0 +1,3 @@
+{
+  "/api/analyze-audio/route": "app/api/analyze-audio/route.js"
+}

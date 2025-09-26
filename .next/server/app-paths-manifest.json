@@ -1,0 +1,6 @@
+{
+  "/api/analyze-audio/route": "app/api/analyze-audio/route.js",
+  "/api/analyze-audio/whisper-health/route": "app/api/analyze-audio/whisper-health/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js"
+}

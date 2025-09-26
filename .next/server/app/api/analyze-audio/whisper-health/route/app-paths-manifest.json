@@ -1,0 +1,3 @@
+{
+  "/api/analyze-audio/whisper-health/route": "app/api/analyze-audio/whisper-health/route.js"
+}
