@@ -1,6 +1,11 @@
 fastapi
 uvicorn[standard]
-python-multipart
+google-cloud-storage
+google-cloud-firestore
+google-cloud-pubsub
 pydub
 faster-whisper
 ctranslate2
+pydantic
+asyncio
+aiohttp

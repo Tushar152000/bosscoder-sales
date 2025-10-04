@@ -1,0 +1,45 @@
+steps:
+  # Build the container image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "asia-south1-docker.pkg.dev/bosscoderplatformindia/bosscoder-website-repo/sales-recording-worker:$COMMIT_SHA",
+        ".",
+      ]
+
+  # Push the container image to Artifact Registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "asia-south1-docker.pkg.dev/bosscoderplatformindia/bosscoder-website-repo/sales-recording-worker:$COMMIT_SHA",
+      ]
+
+  # Deploy to Cloud Run
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      [
+        "run",
+        "deploy",
+        "sales-recording-worker",
+        "--image",
+        "asia-south1-docker.pkg.dev/bosscoderplatformindia/bosscoder-website-repo/sales-recording-worker:$COMMIT_SHA",
+        "--region",
+        "asia-south1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated",
+        "--memory",
+        "2Gi",
+        "--cpu",
+        "2",
+        "--set-env-vars",
+        "WHISPER_MODEL=small,WHISPER_DEVICE=cpu,WHISPER_COMPUTE=int8,GCS_BUCKET=bosscoderplatformindia.appspot.com,AUDIO_FOLDER=zoom-phone-recording,FIRESTORE_COLLECTION=website_zoom_phone",
+        "--timeout",
+        "300",
+      ]
+
+images:
+  - "asia-south1-docker.pkg.dev/bosscoderplatformindia/bosscoder-website-repo/sales-recording-worker:$COMMIT_SHA"
