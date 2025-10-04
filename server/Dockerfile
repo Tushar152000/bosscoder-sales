@@ -6,7 +6,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PORT=8080 \
     WHISPER_MODEL=small \
     WHISPER_DEVICE=cpu \
-    WHISPER_COMPUTE=int8
+    WHISPER_COMPUTE=int8 \
+    GCS_BUCKET=bosscoderplatformindia.appspot.com \
+    AUDIO_FOLDER=zoom-phone-recording \
+    FIRESTORE_COLLECTION=website_zoom_phone
 
 # System deps: ffmpeg for pydub, libgomp1 for ctranslate2
 RUN apt-get update && apt-get install -y --no-install-recommends \
